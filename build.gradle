@@ -1,0 +1,53 @@
+/*
+ * Copyright 2016 Charlie Black
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+ext {
+    version = '1.0.0.SNAPSHOT'
+    geodeVersion = '1.0.0-incubating'
+    googleGuavaVersion = '19.0'
+    junitVersion = '4.12'
+    logbackVersion = '1.1.7'
+}
+
+repositories {
+    maven { url "file:${rootDir}/localMavenRepo" }
+    maven { url 'http://download.osgeo.org/webdav/geotools' }
+    maven { url 'https://repo.spring.io/libs-release' }
+    maven { url 'https://repo.spring.io/libs-milestone' }
+    maven { url 'https://repo.spring.io/libs-snapshot' }
+
+    mavenCentral()
+}
+
+
+description = 'Geode 32 bit ordinal sequence number'
+
+
+apply plugin: "idea"
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName="org.apache.geode.demo.Client"
+applicationDefaultJvmArgs=["-Xmx2g", "-Xmx2g"]
+
+group = 'org.apache.geode.demo'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile "net.logstash.log4j:jsonevent-layout:1.7"
+    compile "org.apache.geode:geode-core:$geodeVersion"
+}
+
